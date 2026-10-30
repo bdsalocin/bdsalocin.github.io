@@ -2,7 +2,7 @@
   "type": "pages",
   "headline": "Smart TV Salon",
   "ready": {
-    "action": "[settings:validate_links:0|link:{PREFIX}{SERVER}/]"
+    "action": "[settings:validate_links:0|link:https://bdsalocin.github.io/]"
   },
   "pages": [
     {
@@ -13,7 +13,7 @@
           "headline": "Ouvrir l'interface Salon",
           "text": "Interface Smart TV plein écran",
           "color": "msx-glass",
-          "action": "[settings:validate_links:0|link:{PREFIX}{SERVER}/]"
+          "action": "[settings:validate_links:0|link:https://bdsalocin.github.io/]"
         }
       ]
     }

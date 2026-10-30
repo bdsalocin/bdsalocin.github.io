@@ -1114,6 +1114,26 @@
 
       showToast(`Ouverture de ${app.name}...`);
 
+      /* 1. Lancement d'application native sur le processeur du téléviseur (DIAL protocole TV) */
+      const dialMap = {
+        youtube: { name: "YouTube", data: "" },
+        netflix: { name: "Netflix", data: "v=2.0" },
+        prime: { name: "AmazonInstantVideo", data: "" }
+      };
+
+      if (dialMap[app.id]) {
+        const dial = dialMap[app.id];
+        try {
+          fetch(`http://127.0.0.1:56789/apps/${dial.name}`, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "text/plain" },
+            body: dial.data
+          }).catch(() => {});
+        } catch (e) {}
+      }
+
+      /* 2. Fonctions propriétaires Titan OS / NetTV pour téléviseurs connectés */
       try {
         if (app.id === "netflix" && typeof window.GotoNetflix === "function") {
           window.GotoNetflix("", "launcher");
@@ -1121,6 +1141,14 @@
         }
         if (app.id === "prime" && typeof window.GotoAIV === "function") {
           window.GotoAIV("", "PrimeVideo");
+          return;
+        }
+        if (app.id === "youtube" && typeof window.GotoYouTube === "function") {
+          window.GotoYouTube();
+          return;
+        }
+        if (app.id === "youtube" && typeof window.loadApp === "function") {
+          window.loadApp("https://www.youtube.com/tv", "YouTube", "NetTVSpecial", "1080p");
           return;
         }
         if (app.id === "disney" && typeof window.loadApp === "function") {
@@ -1132,10 +1160,6 @@
             window.loadLocalUI(app.localUI);
             return;
           }
-          if (!IS_LOCAL_BRIDGE) {
-            showToast("Fonction système disponible directement sur le téléviseur Titan OS");
-            return;
-          }
         }
         if (app.url && typeof window.loadApp === "function") {
           window.loadApp(app.url, app.appName || app.name, app.appType || "NetTV", "1080p");
@@ -1143,6 +1167,7 @@
         }
       } catch (e) {}
 
+      /* 3. Relais pont local si actif */
       if (IS_LOCAL_BRIDGE) {
         fetch("/api/launch", {
           method: "POST",
@@ -1151,11 +1176,14 @@
         }).catch(() => {});
       }
 
-      const targetUrl = app.url || app.fallbackUrl;
-      if (targetUrl) {
-        setTimeout(() => {
-          window.location.href = targetUrl;
-        }, 120);
+      /* 4. Si ce n'est pas une application lancée par DIAL, navigation plein écran */
+      if (!dialMap[app.id]) {
+        const targetUrl = app.url || app.fallbackUrl;
+        if (targetUrl) {
+          setTimeout(() => {
+            window.location.href = targetUrl;
+          }, 120);
+        }
       }
     }
 
