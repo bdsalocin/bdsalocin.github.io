@@ -547,6 +547,7 @@
         desc: "Vous cherchez les séries et les films dont tout le monde parle ? Ils sont tous sur Netflix. Nous proposons des séries, films, documentaires et émissions spéciales de comédie primés.",
         img: "https://eu.app.titanos.tv:443/img/y8hvbh81owjjfs2vgsdkygbfrj44",
         heroBg: "https://eu.app.titanos.tv:443/img/exew7my3ksh1qprwdr8cr30whkd2",
+        url: "https://www.netflix.com",
         fallbackUrl: "https://www.netflix.com",
         bg: "linear-gradient(135deg, #e50914 0%, #83050b 100%)",
         glow1: "rgba(229, 9, 20, 0.52)",
@@ -560,8 +561,8 @@
         desc: "Partagez des vidéos avec vos amis, votre famille et le reste du monde.",
         img: "https://eu.app.titanos.tv:443/img/5upsmitbp6muebctbktk6os77is8",
         heroBg: "https://eu.app.titanos.tv:443/img/s5o6fl3zhyrmyhzo3h1kz9rww88o",
-        url: "https://www.youtube.com/tv",
-        fallbackUrl: "https://www.youtube.com/tv",
+        url: "https://www.youtube.com/tv?launch=menu",
+        fallbackUrl: "https://www.youtube.com/tv?launch=menu",
         appName: "YouTube",
         appType: "NetTVSpecial",
         bg: "linear-gradient(135deg, #ff0033 0%, #99001f 100%)",
@@ -576,6 +577,7 @@
         desc: "Amazon Prime comprend Prime Video et bien d’autres avantages, comme l’expédition gratuite sous une journée.",
         img: "https://eu.app.titanos.tv:443/img/r092kydaykhkux1hszycqxis1w04",
         heroBg: "https://eu.app.titanos.tv:443/img/5kjlp97ssn38v2zrh0mbhifbw3x9",
+        url: "https://www.primevideo.com",
         fallbackUrl: "https://www.primevideo.com",
         bg: "linear-gradient(135deg, #00a8e1 0%, #004b76 100%)",
         glow1: "rgba(0, 168, 225, 0.52)",
@@ -1113,27 +1115,9 @@
       }
 
       showToast(`Ouverture de ${app.name}...`);
+      const targetUrl = app.url || app.fallbackUrl;
 
-      /* 1. Lancement d'application native sur le processeur du téléviseur (DIAL protocole TV) */
-      const dialMap = {
-        youtube: { name: "YouTube", data: "" },
-        netflix: { name: "Netflix", data: "v=2.0" },
-        prime: { name: "AmazonInstantVideo", data: "" }
-      };
-
-      if (dialMap[app.id]) {
-        const dial = dialMap[app.id];
-        try {
-          fetch(`http://127.0.0.1:56789/apps/${dial.name}`, {
-            method: "POST",
-            mode: "no-cors",
-            headers: { "Content-Type": "text/plain" },
-            body: dial.data
-          }).catch(() => {});
-        } catch (e) {}
-      }
-
-      /* 2. Fonctions propriétaires Titan OS / NetTV pour téléviseurs connectés */
+      /* 1. Fonctions natives directes Titan OS et NetTV pour téléviseurs connectés */
       try {
         if (app.id === "netflix" && typeof window.GotoNetflix === "function") {
           window.GotoNetflix("", "launcher");
@@ -1143,23 +1127,23 @@
           window.GotoAIV("", "PrimeVideo");
           return;
         }
-        if (app.id === "youtube" && typeof window.GotoYouTube === "function") {
-          window.GotoYouTube();
-          return;
-        }
-        if (app.id === "youtube" && typeof window.loadApp === "function") {
-          window.loadApp("https://www.youtube.com/tv", "YouTube", "NetTVSpecial", "1080p");
-          return;
+        if (app.id === "youtube") {
+          if (typeof window.GotoYouTube === "function") {
+            window.GotoYouTube();
+            return;
+          }
+          if (typeof window.loadApp === "function") {
+            window.loadApp("https://www.youtube.com/tv?launch=menu", "YouTube", "NetTVSpecial", "720p");
+            return;
+          }
         }
         if (app.id === "disney" && typeof window.loadApp === "function") {
           window.loadApp("disneyplus", "Disney+", "NetTVSpecial", "1080p");
           return;
         }
-        if (app.localUI) {
-          if (typeof window.loadLocalUI === "function") {
-            window.loadLocalUI(app.localUI);
-            return;
-          }
+        if (app.localUI && typeof window.loadLocalUI === "function") {
+          window.loadLocalUI(app.localUI);
+          return;
         }
         if (app.url && typeof window.loadApp === "function") {
           window.loadApp(app.url, app.appName || app.name, app.appType || "NetTV", "1080p");
@@ -1167,23 +1151,32 @@
         }
       } catch (e) {}
 
-      /* 3. Relais pont local si actif */
+      /* 2. Communication avec le conteneur hôte (Media Station X) */
+      try {
+        if (window.parent && window.parent !== window) {
+          if (app.id === "youtube") {
+            window.parent.postMessage({ type: "interactionPlugin", action: "launch:youtube" }, "*");
+            window.parent.postMessage({ type: "interactionPlugin", action: "link:https://www.youtube.com/tv?launch=menu" }, "*");
+          } else if (targetUrl) {
+            window.parent.postMessage({ type: "interactionPlugin", action: `link:${targetUrl}` }, "*");
+          }
+        }
+      } catch (e) {}
+
+      /* 3. Relais pont local si le serveur Python local est actif */
       if (IS_LOCAL_BRIDGE) {
         fetch("/api/launch", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ id: app.id, url: app.url })
+          body: JSON.stringify({ id: app.id, url: targetUrl })
         }).catch(() => {});
       }
 
-      /* 4. Si ce n'est pas une application lancée par DIAL, navigation plein écran */
-      if (!dialMap[app.id]) {
-        const targetUrl = app.url || app.fallbackUrl;
-        if (targetUrl) {
-          setTimeout(() => {
-            window.location.href = targetUrl;
-          }, 120);
-        }
+      /* 4. Navigation plein écran vers l'application */
+      if (targetUrl) {
+        setTimeout(() => {
+          window.location.href = targetUrl;
+        }, 120);
       }
     }
 
