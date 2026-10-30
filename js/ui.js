@@ -102,11 +102,26 @@ let focusedIndex = 0;
       const currentRow = Math.floor(focusedIndex / 6);
       navTabs.forEach((t, i) => t.classList.toggle("active", i === currentRow));
 
+      /* Hide any row above the current row to keep the screen completely clean */
+      sectionElements.forEach((sec, idx) => {
+        if (idx < currentRow) {
+          sec.style.opacity = "0";
+          sec.style.visibility = "hidden";
+          sec.style.pointerEvents = "none";
+          sec.style.transform = "translate3d(0, -18px, 0)";
+        } else {
+          sec.style.opacity = "1";
+          sec.style.visibility = "visible";
+          sec.style.pointerEvents = "auto";
+          sec.style.transform = "translate3d(0, 0, 0)";
+        }
+      });
+
       if (currentRow === 0) {
         rowsTrack.style.transform = "translate3d(0, 0, 0)";
       } else if (sectionElements[currentRow]) {
         const offsetTop = sectionElements[currentRow].offsetTop;
-        rowsTrack.style.transform = `translate3d(0, -${Math.max(0, offsetTop - 10)}px, 0)`;
+        rowsTrack.style.transform = `translate3d(0, -${offsetTop}px, 0)`;
       }
     }
 
