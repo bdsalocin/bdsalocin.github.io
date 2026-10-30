@@ -2,59 +2,84 @@
 
 ![Aperçu de l'interface](./preview.svg)
 
-Une interface d'accueil légère, épurée et ultra réactive pensée pour les téléviseurs équipés de **Titan OS**.
+Une interface d'accueil légère, épurée et ultra réactive pensée pour les téléviseurs équipés du système **Titan OS** (notamment les téléviseurs connectés Philips).
 
-Développé intégralement en **HTML5, CSS3 et JavaScript natif** (aucun framework, aucune dépendance externe), ce projet démontre qu'il est possible d'offrir sur un téléviseur Titan OS une expérience fluide à **60 images par seconde**, pilotable directement avec les **flèches directionnelles de la télécommande** sans subir la lourdeur de l'accueil d'origine ni la lenteur d'un curseur de souris virtuel.
+Conçu intégralement en **HTML5, CSS3 moderne et JavaScript modulaire**, ce projet apporte une expérience fluide à **60 images par seconde**, pilotable directement avec les **flèches de la télécommande**, sans la lourdeur des bandeaux publicitaires d'origine ni le désagrément d'un curseur de souris virtuel.
 
----
+***
 
-## Pourquoi ce projet ?
+## Points forts du projet
 
-Sur de nombreux téléviseurs connectés récents sous Titan OS, l'interface par défaut multiplie les bandeaux promotionnels, les requêtes réseau en arrière plan et les effets de flou gourmands pour le processeur graphique. De plus, le navigateur internet intégré impose souvent un pointeur virtuel peu ergonomique à la télécommande.
+* **Navigation télécommande native** : Déplacement immédiat de vignette en vignette avec les flèches directionnelles et validation avec la touche `OK`, sans curseur de souris.
+* **Architecture modulaire et propre** : Séparation claire des responsabilités entre la structure HTML, les feuilles de style CSS et les modules JavaScript spécialisés.
+* **Rendu fluide à 60 images par seconde** : Accélération matérielle via `transform: translate3d()` et transitions fluides spécialement optimisées pour les processeurs de téléviseurs.
+* **Harmonisation visuelle type Apple tvOS** : Effets de verre dépoli, courbes concentriques équilibrées et mise en valeur dynamique des affiches avec grand bandeau de présentation.
+* **Défilement vertical épuré** : Disparition progressive et automatique des rangées supérieures lors du défilement vers le bas pour garder un affichage net et sans encombrement.
+* **Catalogue complet sur 4 rangées** : Accès direct aux plateformes majeures de vidéo, au direct télévisé et replay, à la musique, au sport ainsi qu'aux fonctions système du téléviseur (Sources, Réglages, Guide des programmes).
+* **Raccourci personnalisé stocké localement** : Possibilité d'ajouter son propre portail web (Jellyfin, Home Assistant ou serveur multimédia personnel). Les données restent exclusivement sur l'appareil de l'utilisateur.
+* **Respect absolu de la vie privée** : Aucun pistage, aucune télémétrie, aucune dépendance externe, politique de sécurité stricte.
 
-Ce projet explore une approche minimaliste inspirée des boîtiers multimédias de salon :
-* **Navigation directionnelle native** : déplacement instantané de tuile en tuile avec les flèches de la télécommande (ou du clavier) et validation directe avec `OK`.
-* **Rendu optimisé à 60 ips** : animations matérielles via `transform: translate3d()` sans aucun filtre de flou coûteux (`backdrop-filter`), garantissant une fluidité immédiate sur les processeurs Smart TV.
-* **Catalogue complet sur 4 rangées (24 tuiles)** : accès direct aux principales plateformes de streaming, chaînes françaises en replay, sport, musique ainsi qu'aux fonctions natives du téléviseur (**Paramètres**, **Sources HDMI**, **Chaînes TV**, **Guide TV**).
-* **Tuile Portail Web personnalisable** : possibilité d'enregistrer l'adresse de son propre serveur multimédia (Jellyfin, Home Assistant, portail personnel). L'adresse saisie reste stockée exclusivement dans le `localStorage` du téléviseur.
-* **Respect total de la vie privée** : aucun traceur, aucune télémétrie, politique `no-referrer` activée et validation stricte des adresses personnalisées.
+***
 
----
-
-## Architecture du dépôt
+## Organisation du code source
 
 ```text
-.
-├── index.html          # Interface complète autonome (HTML5 / CSS3 / JS Vanilla)
-├── preview.svg         # Aperçu vectoriel haute définition de l'interface
+bdsalocin.github.io/
+│
+├── index.html          Structure HTML5 épurée et sémantique
+├── preview.svg         Aperçu graphique haute définition du projet
+│
+├── css/
+│   └── styles.css      Styles visuels complets (verre dépoli, typographie, grille, modale)
+│
+├── js/
+│   ├── apps.js         Catalogue des applications, catégories et raccourcis
+│   ├── launcher.js     Moteur de déclenchement d'applications et intégrations TV
+│   ├── navigation.js   Gestion des événements de la télécommande et touches directionnelles
+│   ├── ui.js           Moteur d'affichage dynamique, défilement et mise en valeur
+│   └── main.js         Point d'entrée principal et démarrage au chargement
+│
 ├── msx/
-│   ├── start.json      # Descripteur d'entrée pour portail Smart TV (Media Station X)
-│   └── content.json    # Redirection plein écran sans curseur virtuel
-├── _headers            # En têtes CORS pour hébergement statique
-└── LICENSE             # Licence open source MIT
+│   ├── start.json      Point d'entrée pour le démarrage sur Media Station X
+│   └── content.json    Lancement direct de l'interface en plein écran
+│
+├── _headers            Directives de sécurité et en têtes HTTP
+├── LICENSE             Licence libre et open source MIT
+└── README.md           Documentation complète du projet
 ```
 
----
+***
 
-## Tester l'interface
+## Gestion des branches Git
 
-### 1. Depuis un ordinateur (démo navigateur)
-Ouvrez simplement le fichier `index.html` dans n'importe quel navigateur moderne (ou hébergez ce dépôt gratuitement via **GitHub Pages**). Utilisez les **touches fléchées** du clavier pour parcourir les 4 rangées et la touche **Entrée** pour ouvrir un service.
+Le dépôt est structuré selon les standards professionnels :
 
-### 2. Sur un téléviseur Titan OS (sans aucune modification système)
-Il est possible d'exécuter ce portail en plein écran natif (avec prise en charge directe des flèches de la télécommande, sans souris virtuelle) grâce à l'application officielle **Media Station X** disponible gratuitement dans la boutique d'applications du téléviseur :
+* **`main`** : Branche de production officielle, stable et directement diffusée en ligne via GitHub Pages.
+* **`develop`** : Branche active de travail pour développer, tester et peaufiner les nouvelles idées avant publication.
 
-1. Hébergez ce dépôt sur **GitHub Pages** (ou tout autre hébergeur statique HTTPS comme Cloudflare Pages ou Vercel).
-2. Installez et ouvrez **Media Station X** depuis le catalogue d'applications de votre téléviseur.
-3. Rendez vous dans `Settings` > `Start Parameter` > `Setup`, saisissez l'adresse de votre page hébergée (sans `https://`), puis validez.
+***
 
-*Cette méthode utilise uniquement une application officielle du catalogue : elle ne modifie aucun fichier interne du téléviseur et peut être réinitialisée à tout moment depuis les paramètres de Media Station X.*
+## Utilisation et déploiement
 
----
+### 1. Sur votre ordinateur (test et prévisualisation)
+Ouvrez simplement le fichier `index.html` dans un navigateur moderne. Vous pouvez naviguer dans l'ensemble des rangées à l'aide des **flèches de votre clavier** et ouvrir un service avec la touche **Entrée**.
+
+### 2. Sur un téléviseur Titan OS (sans modifier le système)
+L'interface s'exécute en plein écran avec votre télécommande d'origine grâce à l'application officielle **Media Station X**, disponible gratuitement dans le magasin d'applications du téléviseur :
+
+1. Déployez le projet sur GitHub Pages (ou utilisez l'adresse déjà hébergée).
+2. Lancez **Media Station X** sur votre téléviseur Philips Titan OS.
+3. Rendez vous dans le menu `Settings` puis `Start Parameter` puis `Setup`.
+4. Saisissez l'adresse de votre portail (par exemple `bdsalocin.github.io`), puis validez.
+5. L'interface se charge immédiatement en plein écran et répond directement à votre télécommande.
+
+*Cette installation ne modifie aucun fichier du système d'exploitation du téléviseur. Elle peut être arrêtée ou réinitialisée à tout instant depuis les paramètres de l'application Media Station X.*
+
+***
 
 ## Mentions légales
 
-Projet open source indépendant réalisé à titre de démonstration technique et d'expérimentation d'interface utilisateur.
-Ce dépôt n'est affilié ni approuvé par Titan OS S.L., TP Vision / Philips, Apple Inc. ou les éditeurs des services référencés. Les noms et visuels des services appartiennent à leurs propriétaires respectifs.
+Projet indépendant réalisé à titre d'expérimentation d'interface utilisateur et de démonstration technique.
+Ce projet n'est ni affilié ni approuvé par Titan OS S.L., TP Vision, Philips ou les plateformes citées. Les marques et logos appartiennent à leurs propriétaires respectifs.
 
 Distribué sous licence **MIT**.
