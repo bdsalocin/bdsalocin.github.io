@@ -1,0 +1,21 @@
+{
+  "type": "pages",
+  "headline": "Smart TV Salon",
+  "ready": {
+    "action": "[settings:validate_links:0|link:{PREFIX}{SERVER}/]"
+  },
+  "pages": [
+    {
+      "items": [
+        {
+          "type": "default",
+          "layout": "0,0,6,3",
+          "headline": "Ouvrir l'interface Salon",
+          "text": "Interface Smart TV plein écran",
+          "color": "msx-glass",
+          "action": "[settings:validate_links:0|link:{PREFIX}{SERVER}/]"
+        }
+      ]
+    }
+  ]
+}

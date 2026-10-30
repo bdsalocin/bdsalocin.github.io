@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <defs>
+    <radialGradient id="glowRed" cx="18%" cy="24%" r="55%">
+      <stop offset="0%" stop-color="#ff002f" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#06070d" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowBlue" cx="84%" cy="78%" r="58%">
+      <stop offset="0%" stop-color="#143cdc" stop-opacity="0.36"/>
+      <stop offset="100%" stop-color="#06070d" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="dockGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2e3348" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#161926" stop-opacity="0.98"/>
+    </linearGradient>
+    <linearGradient id="rowGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#222636" stop-opacity="0.88"/>
+      <stop offset="100%" stop-color="#12141e" stop-opacity="0.94"/>
+    </linearGradient>
+    <linearGradient id="t1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff002f"/><stop offset="100%" stop-color="#7a0016"/></linearGradient>
+    <linearGradient id="t2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e50914"/><stop offset="100%" stop-color="#6e0409"/></linearGradient>
+    <linearGradient id="t3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff0033"/><stop offset="100%" stop-color="#8c001c"/></linearGradient>
+    <linearGradient id="t4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00a8e1"/><stop offset="100%" stop-color="#004b76"/></linearGradient>
+    <linearGradient id="t5" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#113ccf"/><stop offset="100%" stop-color="#061556"/></linearGradient>
+    <linearGradient id="t6" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#343746"/><stop offset="100%" stop-color="#14161f"/></linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1280" height="720" fill="#06070d"/>
+  <rect width="1280" height="720" fill="url(#glowRed)"/>
+  <rect width="1280" height="720" fill="url(#glowBlue)"/>
+
+  <!-- Top Navigation Bar -->
+  <rect x="54" y="26" width="168" height="38" rx="19" fill="#232738" stroke="#ffffff" stroke-opacity="0.2"/>
+  <rect x="70" y="37" width="18" height="12" rx="2" fill="none" stroke="#ffffff" stroke-width="2"/>
+  <line x1="74" y1="53" x2="84" y2="53" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+  <text x="98" y="50" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700">Smart TV Salon</text>
+
+  <rect x="372" y="25" width="536" height="40" rx="20" fill="#10121c" stroke="#ffffff" stroke-opacity="0.14"/>
+  <rect x="380" y="30" width="108" height="30" rx="15" fill="#ffffff" fill-opacity="0.18"/>
+  <text x="434" y="50" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="700">À l'affiche</text>
+  <text x="562" y="50" text-anchor="middle" fill="#ffffff" fill-opacity="0.6" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="600">Chaînes &amp; Replay</text>
+  <text x="700" y="50" text-anchor="middle" fill="#ffffff" fill-opacity="0.6" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="600">Cinéma &amp; Sport</text>
+  <text x="836" y="50" text-anchor="middle" fill="#ffffff" fill-opacity="0.6" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="600">Télévision</text>
+
+  <text x="1226" y="51" text-anchor="end" fill="#ffffff" fill-opacity="0.9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="18" font-weight="600">ven. 30 oct.  20:45</text>
+
+  <!-- Hero Stage -->
+  <rect x="54" y="108" width="176" height="24" rx="6" fill="#ffffff" fill-opacity="0.16"/>
+  <text x="142" y="124" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="700" letter-spacing="1.4">TV EN DIRECT &amp; REPLAY</text>
+  <text x="54" y="182" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="52" font-weight="800" letter-spacing="-1">Free TV</text>
+  <text x="54" y="216" fill="#ffffff" fill-opacity="0.86" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="16">Plus de 170 chaînes en direct et 25 000 programmes en replay accessibles instantanément,</text>
+  <text x="54" y="240" fill="#ffffff" fill-opacity="0.86" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="16">avec navigation directionnelle native à 60 images par seconde à la télécommande.</text>
+
+  <!-- Row 1 : Dock -->
+  <text x="62" y="294" fill="#ffffff" fill-opacity="0.8" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="15" font-weight="700">À l'affiche</text>
+  <rect x="54" y="306" width="1172" height="168" rx="24" fill="url(#dockGrad)" stroke="#ffffff" stroke-opacity="0.24"/>
+
+  <!-- Focused Tile 1 -->
+  <g transform="translate(74, 320)">
+    <rect x="-4" y="-4" width="178" height="102" rx="16" fill="url(#t1)" stroke="#ffffff" stroke-width="3.5"/>
+    <text x="85" y="54" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="22" font-weight="800">Free TV</text>
+    <text x="85" y="122" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700">Free TV</text>
+  </g>
+
+  <!-- Tile 2 -->
+  <g transform="translate(266, 324)">
+    <rect width="170" height="96" rx="14" fill="url(#t2)" stroke="#ffffff" stroke-opacity="0.18" stroke-width="2"/>
+    <text x="85" y="55" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="21" font-weight="800">NETFLIX</text>
+    <text x="85" y="118" text-anchor="middle" fill="#ffffff" fill-opacity="0.72" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="600">Netflix</text>
+  </g>
+
+  <!-- Tile 3 -->
+  <g transform="translate(456, 324)">
+    <rect width="170" height="96" rx="14" fill="url(#t3)" stroke="#ffffff" stroke-opacity="0.18" stroke-width="2"/>
+    <text x="85" y="55" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="21" font-weight="800">YouTube</text>
+    <text x="85" y="118" text-anchor="middle" fill="#ffffff" fill-opacity="0.72" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="600">YouTube</text>
+  </g>
+
+  <!-- Tile 4 -->
+  <g transform="translate(646, 324)">
+    <rect width="170" height="96" rx="14" fill="url(#t4)" stroke="#ffffff" stroke-opacity="0.18" stroke-width="2"/>
+    <text x="85" y="55" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="19" font-weight="800">prime video</text>
+    <text x="85" y="118" text-anchor="middle" fill="#ffffff" fill-opacity="0.72" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="600">Prime Video</text>
+  </g>
+
+  <!-- Tile 5 -->
+  <g transform="translate(836, 324)">
+    <rect width="170" height="96" rx="14" fill="url(#t5)" stroke="#ffffff" stroke-opacity="0.18" stroke-width="2"/>
+    <text x="85" y="55" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="21" font-weight="800">Disney+</text>
+    <text x="85" y="118" text-anchor="middle" fill="#ffffff" fill-opacity="0.72" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="600">Disney+</text>
+  </g>
+
+  <!-- Tile 6 -->
+  <g transform="translate(1026, 324)">
+    <rect width="170" height="96" rx="14" fill="url(#t6)" stroke="#ffffff" stroke-opacity="0.18" stroke-width="2"/>
+    <text x="85" y="55" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="20" font-weight="800">Apple TV</text>
+    <text x="85" y="118" text-anchor="middle" fill="#ffffff" fill-opacity="0.72" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="600">Apple TV</text>
+  </g>
+
+  <!-- Row 2 Preview -->
+  <text x="62" y="508" fill="#ffffff" fill-opacity="0.8" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="15" font-weight="700">Chaînes TV &amp; Replay</text>
+  <rect x="54" y="520" width="1172" height="168" rx="24" fill="url(#rowGrad)" stroke="#ffffff" stroke-opacity="0.14"/>
+
+  <g transform="translate(76, 538)">
+    <rect width="170" height="96" rx="14" fill="#141416" stroke="#ffffff" stroke-opacity="0.16" stroke-width="2"/>
+    <text x="85" y="55" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="20" font-weight="800">CANAL+</text>
+    <text x="85" y="118" text-anchor="middle" fill="#ffffff" fill-opacity="0.7" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="600">CANAL+</text>
+  </g>
+  <g transform="translate(266, 538)">
+    <rect width="170" height="96" rx="14" fill="#001bb8" stroke="#ffffff" stroke-opacity="0.16" stroke-width="2"/>
+    <text x="85" y="55" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="20" font-weight="800">france•tv</text>
+    <text x="85" y="118" text-anchor="middle" fill="#ffffff" fill-opacity="0.7" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="600">france.tv</text>
+  </g>
+  <g transform="translate(456, 538)">
+    <rect width="170" height="96" rx="14" fill="#18289c" stroke="#ffffff" stroke-opacity="0.16" stroke-width="2"/>
+    <text x="85" y="55" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="21" font-weight="800">TF1+</text>
+    <text x="85" y="118" text-anchor="middle" fill="#ffffff" fill-opacity="0.7" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="600">TF1+</text>
+  </g>
+  <g transform="translate(646, 538)">
+    <rect width="170" height="96" rx="14" fill="#9c1c5a" stroke="#ffffff" stroke-opacity="0.16" stroke-width="2"/>
+    <text x="85" y="55" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="21" font-weight="800">M6+</text>
+    <text x="85" y="118" text-anchor="middle" fill="#ffffff" fill-opacity="0.7" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="600">M6+</text>
+  </g>
+  <g transform="translate(836, 538)">
+    <rect width="170" height="96" rx="14" fill="#c73200" stroke="#ffffff" stroke-opacity="0.16" stroke-width="2"/>
+    <text x="85" y="55" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="21" font-weight="800">ARTE</text>
+    <text x="85" y="118" text-anchor="middle" fill="#ffffff" fill-opacity="0.7" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="600">ARTE</text>
+  </g>
+  <g transform="translate(1026, 538)">
+    <rect width="170" height="96" rx="14" fill="#006eb8" stroke="#ffffff" stroke-opacity="0.16" stroke-width="2"/>
+    <text x="85" y="55" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="19" font-weight="800">FRANCE 24</text>
+    <text x="85" y="118" text-anchor="middle" fill="#ffffff" fill-opacity="0.7" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="600">France 24</text>
+  </g>
+</svg>

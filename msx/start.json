@@ -1,0 +1,5 @@
+{
+  "name": "Smart TV Salon Launcher",
+  "version": "2.0.0",
+  "parameter": "content:{PREFIX}{SERVER}/msx/content.json"
+}
